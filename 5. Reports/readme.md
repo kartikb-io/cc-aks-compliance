@@ -99,7 +99,9 @@ metadata:
 spec:
   reportType: inventory
   endpoints:
-    selector: soc2 == "true"
+    namespaces:
+      names:
+        - hipstershop
   schedule: 8 6 * * *
 EOF
 ```
@@ -125,7 +127,9 @@ metadata:
 spec:
   reportType: network-access
   endpoints:
-    selector: soc2 == "true"
+    namespaces:
+      names:
+        - hipstershop
   schedule: 0 1 * * *
 EOF
 ```
