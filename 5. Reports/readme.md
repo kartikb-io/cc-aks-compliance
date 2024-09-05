@@ -158,6 +158,30 @@ spec:
 EOF
 ```
 
+### CIS Benchmark
+
+The following report schedules a CIS benchmark report of the cluster at the frequency of your choosing
+
+```yaml
+kubectl apply -f -<<EOF
+apiVersion: projectcalico.org/v3
+kind: GlobalReport
+metadata:
+  name: daily-cis-benchmark
+spec:
+  reportType: cis-benchmark
+  schedule: 0 0 * * *
+  cis:
+    highThreshold: 100
+    medThreshold: 50
+    includeUnscoredTests: true
+    numFailedTests: 5
+    resultsFilters:
+      - benchmarkSelection: { kubernetesVersion: "1.28" }
+        exclude: ["1.1.4", "1.2.5"]
+EOF
+```
+
 
 ### Generate reports manually
 
